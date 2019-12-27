@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>组件测试</title>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body style="height: 3000px;">
+  <div id="app">
+    <!-- <rin-overlay v-model="overlay"></rin-overlay> -->
+    <!-- 
+    <rin-loading v-model="loading"></rin-loading> -->
+
+    <rin-dialog v-model="dialog.show" confirm-button-text="确认了">
+
+    </rin-dialog>
+
+    <rin-backtop></rin-backtop>
+
+    <button @click="dialog.show = true">组件</button>
+    <button @click="confirm">confirm</button>
+
+    <rin-picker></rin-picker>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: function () {
+        return {
+          overlay: true,
+          loading: true,
+          dialog: {
+            title: '标题',
+            show: false
+          }
+        }
+      },
+      watch: {
+        'dialog.show'(val) {
+          console.log(val);
+        }
+      },
+      methods: {
+        confirm() {
+          this.$confirm({
+            title: '标题123',
+            message: '消息内容132',
+            confirmButtonText: '确认',
+            cancelButtonText: '取消',
+            showTitle: true,
+            confirmButtonColor: '#409eff',
+            cancelButtonColor: '#303133'
+          })
+            .then(function () {
+              console.log('html ok')
+            })
+            .catch(function () {
+              console.log('html close')
+            })
+        }
+      },
+    })
+  </script>
+
+</body>
+<style>
+</style>
+
+</html>

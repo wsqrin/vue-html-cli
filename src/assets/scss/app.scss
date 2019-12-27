@@ -1,0 +1,33 @@
+$primary: #409eff;
+$success: #06AD56;
+$danger: #f56c6c;
+$warning:#e6a23c;
+$info: #909399;
+
+[v-cloak] {
+  display: none !important;
+}
+
+button {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  padding: 7px 15px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  color: #606266;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  border-radius: 3px;
+  box-sizing: border-box;
+  transition: .1s;
+  font-weight: 500;
+  outline: none;
+}
+
+button:hover {
+  color: #409eff;
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
+}
