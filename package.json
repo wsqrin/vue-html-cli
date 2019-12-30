@@ -4,8 +4,8 @@
   "description": "rin ui",
   "main": "./src/main.js",
   "scripts": {
-    "build": "webpack --progress --config webpack.config.js",
-    "dev": "webpack-dev-server --inline --progress --development"
+    "build": "webpack --progress --config config/webpack/webpack.prod.js",
+    "dev": "webpack-dev-server --progress --config config/webpack/webpack.dev.js"
   },
   "author": "rin",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "compression-webpack-plugin": "^3.0.1",
     "css-loader": "^3.4.0",
     "eslint": "^6.8.0",
+    "eslint-loader": "^3.0.3",
     "eslint-plugin-vue": "^6.0.1",
     "file-loader": "^5.0.2",
     "html-loader": "^0.5.5",
@@ -37,7 +38,8 @@
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1"
+    "webpack-dev-server": "^3.10.1",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "@babel/polyfill": "^7.7.0",

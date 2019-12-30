@@ -9,7 +9,6 @@ import Backtop from './packages/backtop'
 import Picker from './packages/picker'
 
 import Confirm from './packages/message-box/comfirm'
-
 const components = [
   Test,
   Overlay,
@@ -21,6 +20,8 @@ const components = [
 
 const install = function (Vue) {
   components.forEach(component => {
+    console.log(component.name)
+
     Vue.component(component.name, component)
   })
 

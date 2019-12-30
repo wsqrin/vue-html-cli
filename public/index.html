@@ -15,16 +15,15 @@
     <!-- 
     <rin-loading v-model="loading"></rin-loading> -->
 
-    <rin-dialog v-model="dialog.show" confirm-button-text="确认了">
-
-    </rin-dialog>
+    <rin-dialog v-model="dialog.show" confirm-button-text="确认了"></rin-dialog>
 
     <rin-backtop></rin-backtop>
 
     <button @click="dialog.show = true">组件</button>
+
     <button @click="confirm">confirm</button>
 
-    <rin-picker></rin-picker>
+    <!-- <rin-picker></rin-picker> -->
   </div>
 
   <script>
@@ -40,13 +39,8 @@
           }
         }
       },
-      watch: {
-        'dialog.show'(val) {
-          console.log(val);
-        }
-      },
       methods: {
-        confirm() {
+        confirm: function () {
           this.$confirm({
             title: '标题123',
             message: '消息内容132',

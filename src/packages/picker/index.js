@@ -1,7 +1,7 @@
-import OverLay from './src/Overlay.vue'
+import Picker from './src/Picker.vue'
 
-OverLay.install = Vue => {
-  Vue.component(OverLay.name, OverLay)
+Picker.install = Vue => {
+  Vue.component(Picker.name, Picker)
 }
 
-export default OverLay
+export default Picker
