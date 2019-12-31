@@ -1,44 +1,48 @@
 <template>
-  <rin-overlay v-model="value"
-               :overlay="overlay">
+  <div>
+    <rin-overlay v-model="dialogOverlay"></rin-overlay>
 
-    <div v-if="value"
-         class="rin-dialog">
+    <div class="rin-dialog__warp">
+      <transition name="rin-dialog"
+                  mode="out-in">
 
-      <div class="rin-dialog__header "
-           v-if="showTitle">
-        <slot name="title"></slot>
+        <div class="rin-dialog"
+             v-if="value">
+          <div class="rin-dialog__header "
+               v-if="showTitle">
+            <slot name="title"></slot>
 
-        <span v-if="!$slots.title">{{ title }}</span>
-      </div>
+            <span v-if="!$slots.title">{{ title }}</span>
+          </div>
 
-      <div class="rin-dialog__body">
-        <slot></slot>
+          <div class="rin-dialog__body">
+            <slot></slot>
 
-        <div v-if="!$slots.default"
-             class="rin-dialog-message">
-          <span>{{ message }}</span>
+            <div v-if="!$slots.default"
+                 class="rin-dialog-message">
+              <span>{{ message }}</span>
+            </div>
+          </div>
+
+          <div class="rin-dialog__footer">
+            <button v-if="showCancelButton"
+                    class="rin-dialog-btn rin-dialog-cancel"
+                    @click="cancel()"
+                    :style="{color: cancelButtonColor }">
+              <span>{{ cancelButtonText }}</span>
+            </button>
+
+            <button :style="{color: confirmButtonColor}"
+                    class="rin-dialog-btn rin-dialog-confirm"
+                    @click="confirm()">
+              <span>{{ confirmButtonText }}</span>
+            </button>
+
+          </div>
         </div>
-      </div>
-
-      <div class="rin-dialog__footer">
-        <button v-if="showCancelButton"
-                class="rin-dialog-btn rin-dialog-cancel"
-                @click="cancel()"
-                :style="{color: cancelButtonColor }">
-          <span>{{ cancelButtonText }}</span>
-        </button>
-
-        <button :style="{color: confirmButtonColor}"
-                class="rin-dialog-btn rin-dialog-confirm"
-                @click="confirm()">
-          <span>{{ confirmButtonText }}</span>
-        </button>
-
-      </div>
+      </transition>
     </div>
-
-  </rin-overlay>
+  </div>
 </template>
 
 <script>
@@ -46,7 +50,7 @@ export default {
   name: 'RinDialog',
   data () {
     return {
-      showOverlay: false,
+      dialogOverlay: false,
     }
   },
   props: {
@@ -59,7 +63,7 @@ export default {
     // 提示内容
     message: {
       type: String,
-      default: '消息内容'
+      default: '内容'
     },
     // 【确认按钮】的文字
     confirmButtonText: {
@@ -109,11 +113,26 @@ export default {
       this.$emit('cancel')
       this.$emit('input', false)
     }
-  }
+  },
+  watch: {
+    value (v) {
+      this.showDialog = v
+
+      this.dialogOverlay = v
+    }
+  },
 }
 </script>
 
 <style scoped lang="scss">
+.rin-dialog__warp {
+  position: fixed;
+  top: 48%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 2000;
+}
+
 @media (max-width: 321px) {
   .rin-dialog {
     width: 90%;
@@ -127,10 +146,8 @@ export default {
   border-radius: 10px;
   backface-visibility: hidden;
   background-color: #fff;
-  transition: 0.3s;
   margin-top: -20px;
   border: 1px solid #e4e7ed;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
 
   .rin-dialog__header {
     font-weight: 500;
@@ -144,13 +161,12 @@ export default {
   }
 
   .rin-dialog__body {
-    padding: 22px;
+    padding: 20px;
     max-height: 60vh;
     overflow-y: auto;
     font-size: 14px;
     color: #646566;
     max-height: 60vh;
-    text-align: center;
     word-wrap: break-word; // 换行
 
     .rin-dialog-message {
@@ -196,5 +212,23 @@ export default {
       color: #303133;
     }
   }
+}
+
+.rin-dialog-enter-active {
+  transition: all 0.2s ease-in-out;
+}
+
+.rin-dialog-leave-active {
+  transition: all 0.2s ease-in-out;
+}
+
+.rin-dialog-enter {
+  transform: scale(0.94);
+  opacity: 0;
+}
+
+.rin-dialog-leave-to {
+  transform: scale(0.96);
+  opacity: 0;
 }
 </style>

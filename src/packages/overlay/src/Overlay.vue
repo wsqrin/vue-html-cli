@@ -6,11 +6,7 @@
          class='rin-overlay__wrap'
          :style="{backgroundColor : value ? overlayBackgroundColor: ''}">
 
-      <transition name="rin-overlay-body"
-                  mode="out-in">
-
-        <slot></slot>
-      </transition>
+      <slot></slot>
     </div>
   </transition>
 </template>
@@ -68,23 +64,5 @@ export default {
 .rin-overlay-enter,
 .rin-overlay-leave-to {
   opacity: 0;
-}
-
-.rin-overlay-body-enter-active {
-  transition: all 0.3s ease;
-}
-
-.rin-overlay-body-leave-active {
-  transition: all 0.2s ease-in-out;
-}
-
-.rin-overlay-body-enter {
-  opacity: 0;
-  transform: scale(0.8);
-}
-
-.rin-overlay-body-leave-to {
-  opacity: 0;
-  transform: scale(0.9);
 }
 </style>
