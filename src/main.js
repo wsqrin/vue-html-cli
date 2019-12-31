@@ -7,6 +7,7 @@ import Dialog from './packages/dialog'
 import Loading from './packages/loading'
 import Backtop from './packages/backtop'
 import Picker from './packages/picker'
+import { Tabs, TabItem } from './packages/tabs'
 
 import Confirm from './packages/message-box/comfirm'
 const components = [
@@ -15,7 +16,9 @@ const components = [
   Loading,
   Dialog,
   Backtop,
-  Picker
+  Picker,
+  Tabs,
+  TabItem
 ]
 
 const install = function (Vue) {

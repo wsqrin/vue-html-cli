@@ -9,21 +9,42 @@
   <script src="../node_modules/vue/dist/vue.js"></script>
 </head>
 
-<body style="height: 3000px;">
+<body style="background-color:blanchedalmond;margin: 0;">
   <div id="app">
     <!-- <rin-overlay v-model="overlay"></rin-overlay> -->
-    <!-- 
-    <rin-loading v-model="loading"></rin-loading> -->
 
-    <rin-dialog v-model="dialog.show" confirm-button-text="确认了"></rin-dialog>
+    <!-- <rin-loading v-model="loading"></rin-loading> -->
+
+    <!-- <rin-dialog v-model="dialog.show" confirm-button-text="确认了"></rin-dialog> -->
 
     <rin-backtop></rin-backtop>
 
-    <button @click="dialog.show = true">组件</button>
+    <!-- <button @click="dialog.show = true">组件</button>
 
-    <button @click="confirm">confirm</button>
+    <button @click="confirm">confirm</button> -->
 
-    <!-- <rin-picker></rin-picker> -->
+    <button @click="picker = true">picker选择器</button>
+
+
+    <rin-picker v-model="picker" @confirm="pickerConfirm"></rin-picker>
+
+    <!-- 
+    <rin-tabs v-model="selected">
+      <rin-tab-item title="标题" name="name">
+
+        <div>123</div>
+      </rin-tab-item>
+      <rin-tab-item title="标题" name="name">1223</rin-tab-item>
+      <rin-tab-item title="标题" name="name">12233333</rin-tab-item>
+      <rin-tab-item title="标题" name="name">122444423</rin-tab-item>
+      <rin-tab-item title="标题" name="name">12255552223</rin-tab-item>
+      <rin-tab-item title="标题" name="name">123</rin-tab-item>
+      <rin-tab-item title="标题" name="name">123</rin-tab-item>
+      <rin-tab-item title="标题" name="name">123</rin-tab-item>
+      <rin-tab-item title="标题" name="name">123</rin-tab-item>
+      <rin-tab-item title="标题" name="name">123</rin-tab-item>
+      <rin-tab-item title="标题" name="name">213</rin-tab-item>
+    </rin-tabs> -->
   </div>
 
   <script>
@@ -31,15 +52,20 @@
       el: '#app',
       data: function () {
         return {
+          selected: 'name',
           overlay: true,
           loading: true,
           dialog: {
             title: '标题',
             show: false
-          }
+          },
+          picker: false
         }
       },
       methods: {
+        pickerConfirm: function (item) {
+          console.log(item);
+        },
         confirm: function () {
           this.$confirm({
             title: '标题123',

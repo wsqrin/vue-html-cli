@@ -10,7 +10,7 @@ module.exports = merge(common, {
     host: '127.0.0.1',
     port: 8088,
     https: false,
-    hotOnly: false,
+    hotOnly: true,
     hot: true,
     inline: true, // 页面重新记载
     // contentBase: path.join(__dirname, "../public") // html默认根目录

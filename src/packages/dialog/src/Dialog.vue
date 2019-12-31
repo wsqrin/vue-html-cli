@@ -1,7 +1,6 @@
 <template>
   <rin-overlay v-model="value"
-               :overlay="overlay"
-               :overlay-background-color="overlayBackgroundColor">
+               :overlay="overlay">
 
     <div v-if="value"
          class="rin-dialog">
@@ -17,21 +16,21 @@
         <slot></slot>
 
         <div v-if="!$slots.default"
-             class="rin-dialog__message">
+             class="rin-dialog-message">
           <span>{{ message }}</span>
         </div>
       </div>
 
       <div class="rin-dialog__footer">
         <button v-if="showCancelButton"
-                class="rin-dialog__btn rin-dialog__cancel"
+                class="rin-dialog-btn rin-dialog-cancel"
                 @click="cancel()"
                 :style="{color: cancelButtonColor }">
           <span>{{ cancelButtonText }}</span>
         </button>
 
         <button :style="{color: confirmButtonColor}"
-                class="rin-dialog__btn rin-dialog__confirm"
+                class="rin-dialog-btn rin-dialog-confirm"
                 @click="confirm()">
           <span>{{ confirmButtonText }}</span>
         </button>
@@ -97,13 +96,8 @@ export default {
     overlay: {
       type: Boolean,
       default: true
-    },
-    overlayBackgroundColor: {
-      type: String,
-      default: 'rgba(0, 0, 0, 0.66)'
-    },
+    }
   },
-
   methods: {
     // 确认
     confirm () {
@@ -159,7 +153,7 @@ export default {
     text-align: center;
     word-wrap: break-word; // 换行
 
-    .rin-dialog__message {
+    .rin-dialog-message {
       line-height: 24px;
       white-space: pre-wrap;
       text-align: center;
@@ -179,7 +173,7 @@ export default {
     font-size: 16px;
     font-weight: 500;
 
-    .rin-dialog__btn {
+    .rin-dialog-btn {
       padding: 0;
       border: none;
       flex-grow: 1;
@@ -188,15 +182,15 @@ export default {
       padding: 16px;
     }
 
-    .rin-dialog__btn:hover {
+    .rin-dialog-btn:hover {
       background-color: #e4e7ed;
     }
 
-    .rin-dialog__confirm {
+    .rin-dialog-confirm {
       color: #409eff;
     }
 
-    .rin-dialog__cancel {
+    .rin-dialog-cancel {
       border-right: 1px solid #ebeef5;
       box-sizing: border-box;
       color: #303133;

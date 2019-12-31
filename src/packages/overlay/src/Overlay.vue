@@ -4,7 +4,7 @@
 
     <div v-show="value"
          class='rin-overlay__wrap'
-         :style="{backgroundColor : overlay ? overlayBackgroundColor: ''}">
+         :style="{backgroundColor : value ? overlayBackgroundColor: ''}">
 
       <transition name="rin-overlay-body"
                   mode="out-in">
@@ -20,15 +20,18 @@ export default {
   name: 'RinOverlay',
   data () {
     return {
-      showOverlay: false
+      // showOverlay: false
     }
   },
   props: {
-    value: Boolean,
+    value: {
+      type: Boolean,
+      default: false,
+    },
     // @遮罩层背景颜色
     overlayBackgroundColor: {
       type: String,
-      default: 'rgba(0, 0, 0, 0.66)'
+      default: 'rgba(0, 0, 0, 0.7)'
     },
     // @是否显示遮罩层
     overlay: {
@@ -37,9 +40,9 @@ export default {
     }
   },
   watch: {
-    value (val) {
-      this.showOverlay = val
-    }
+    // value (val) {
+    //   // this.showOverlay = val
+    // }
   }
 }
 </script>
@@ -55,7 +58,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
 }
 
 .rin-overlay-enter-active,
