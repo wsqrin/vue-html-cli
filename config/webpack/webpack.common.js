@@ -7,9 +7,13 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const __root = path.resolve(__dirname, '../../')
 
+const ASSET_PATH = path.resolve(__dirname, '../../')
+console.log(ASSET_PATH)
+
 
 module.exports = {
-  entry: ['@babel/polyfill', path.resolve(__root, 'src/main.js')],
+  context: path.resolve(__dirname, '../../'),
+  entry: ['@babel/polyfill', './src/main.js'],
   output: {
     filename: 'rin-vue.js',
     path: path.resolve(__root, 'dist'), // 打包路径：通过resolve保证为绝对路径
@@ -85,7 +89,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__root, 'public/index.html'),
+      template: './public/index.html',
       filename: 'index.html',
       inject: 'head', // 引入js文件的位置
       minify: { // html压缩

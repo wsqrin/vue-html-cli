@@ -5,8 +5,11 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = merge(common, {
   mode: 'production',
+  bail: true,  // 出错时，迫使webpack退出其打包
   // 配置优化规则
   optimization: {
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
     // =>压缩优化(产生问题：因为配置，导致js不会自动压缩)
     minimizer: [
       new OptimizeCSSAssetsPlugin({}),// 压缩css
