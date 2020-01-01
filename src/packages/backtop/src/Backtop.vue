@@ -1,8 +1,6 @@
 <template>
   <div class='rin-backtop'
-       v-if="show"
-       @mouseenter="mouseenter()"
-       @mouseleave="mouseleave()"
+       v-show="show"
        @click="backTop()"
        :style="{
          right: `${right}px`,
@@ -34,15 +32,20 @@ export default {
     }
   },
   props: {
-    moveHeight: {  // 滚动多少高度显示
+    // 滚动多少高度显示
+    moveHeight: {
       type: Number,
       default: 200
     },
-    bottom: {  // 距离底部距离
+
+    // 距离底部距离
+    bottom: {
       type: Number,
       default: 40
     },
-    right: {  // 距离右边距离
+
+    // 距离右边距离
+    right: {
       type: Number,
       default: 40
     }
@@ -51,22 +54,16 @@ export default {
     backTop () {
       document.body.scrollTop = 0
       document.documentElement.scrollTop = 0
+      this.$emit('backTop')
     },
     handleScroll () { // 计算滚动条
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
       this.show = scrollTop > this.moveHeight
-    },
-    mouseenter () {
-      this.hoverStyle = { boxShadow: '0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5)' }
-    },
-    mouseleave () {
-      this.hoverStyle = {}
     }
   },
-
   mounted () { window.addEventListener('scroll', this.handleScroll, true) },
 
-  destroyed () { window.removeEventListener('scroll', this.handleScroll, true) },
+  destroyed () { window.removeEventListener('scroll', this.handleScroll, true) }
 }
 </script>
 
@@ -83,6 +80,10 @@ export default {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 10;
+  z-index: 100;
+}
+
+.rin-backtop:hover {
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
 }
 </style>
