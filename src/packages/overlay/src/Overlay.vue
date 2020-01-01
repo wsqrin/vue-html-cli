@@ -4,7 +4,7 @@
 
     <div v-show="value"
          class='rin-overlay__wrap'
-         :style="{backgroundColor : value ? overlayBackgroundColor: ''}">
+         :style="{backgroundColor : overlay ? overlayColor: ''}">
 
       <slot></slot>
     </div>
@@ -14,18 +14,13 @@
 <script>
 export default {
   name: 'RinOverlay',
-  data () {
-    return {
-      // showOverlay: false
-    }
-  },
   props: {
     value: {
       type: Boolean,
       default: false,
     },
     // @遮罩层背景颜色
-    overlayBackgroundColor: {
+    overlayColor: {
       type: String,
       default: 'rgba(0, 0, 0, 0.7)'
     },
@@ -36,9 +31,11 @@ export default {
     }
   },
   watch: {
-    // value (val) {
-    //   // this.showOverlay = val
-    // }
+    value (v) {
+      console.log(v);
+
+      document.body.style.overflow = v ? 'hidden' : 'visible'
+    }
   }
 }
 </script>
