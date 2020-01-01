@@ -47,7 +47,7 @@ export default {
   Test: Test.use,
   Overlay: Overlay.use,
   Dialog: Dialog.use,
-  Loading: Loading.use,
+  Loading: Loading.use
 }
 
 
