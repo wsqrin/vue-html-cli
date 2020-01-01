@@ -9,7 +9,7 @@
   <script src="../node_modules/vue/dist/vue.js"></script>
 </head>
 
-<body style="background-color:blanchedalmond;margin: 0;">
+<body style="background-color:blanchedalmond;margin: 0;height: 3000px;">
   <div id="app">
     <!-- <rin-overlay v-model="overlay"></rin-overlay> -->
 
@@ -30,7 +30,7 @@
     <button @click="picker = true">picker选择器</button>
 
 
-    <rin-picker v-model="picker" @confirm="pickerConfirm"></rin-picker>
+    <rin-picker v-model="picker" :overlay="true" @confirm="pickerConfirm"></rin-picker>
 
     <!-- 
     <rin-tabs v-model="selected">
