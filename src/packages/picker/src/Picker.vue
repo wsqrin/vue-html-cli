@@ -1,6 +1,8 @@
 <template>
   <div>
-    <rin-overlay v-model="pickerOverlary"></rin-overlay>
+    <rin-overlay v-model="value"
+                 :overlay="overlay"
+                 :overlay-color="overlayColor"></rin-overlay>
 
     <transition name="rin-picker"
                 mode="out-in">
@@ -80,7 +82,6 @@ export default {
   name: 'RinPicker',
   data () {
     return {
-      pickerOverlary: false,
       selected: 0,
       transitionDuration: '0.3s',
       touch: {
@@ -148,13 +149,23 @@ export default {
           }
         ]
       }
+    },
+
+    //--------------
+    // @遮罩层背景颜色
+    overlayColor: {
+      type: String,
+      default: 'rgba(0, 0, 0, 0.7)'
+    },
+    // @是否显示遮罩层
+    overlay: {
+      type: Boolean,
+      default: true
     }
-  },
-  watch: {
-    value (v) { this.pickerOverlary = v }
   },
   methods: {
     touchstart (e) {
+      this.transitionDuration = ''
       this.touch.start = e.changedTouches[0].clientY
     },
     touchmove (e) {
@@ -264,52 +275,52 @@ export default {
       }
     }
   }
-}
 
-.rin-picker__body {
-  overflow: hidden;
-  box-sizing: border-box;
-  position: relative;
-  background: #fff;
-
-  .rin-picker-selected {
-    border-top: 1px solid #dcdfe6;
-    border-bottom: 1px solid #dcdfe6;
+  .rin-picker__body {
+    overflow: hidden;
     box-sizing: border-box;
-    position: absolute;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
+    position: relative;
+    background: #fff;
 
-    .rin-picker-selected__ball {
-      border-radius: 50%;
-      background: #51c332;
-      right: 0;
-      margin-right: 17px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 3px;
-    }
-  }
-
-  .rin-picker__wrap {
-    transition: all ease;
-    transform: translate3d(0, 0, 0);
-    box-sizing: border-box;
-
-    .rin-picker-item {
+    .rin-picker-selected {
+      border-top: 1px solid #dcdfe6;
+      border-bottom: 1px solid #dcdfe6;
       box-sizing: border-box;
+      position: absolute;
+      width: 100%;
       display: flex;
-      justify-content: center;
+      align-items: center;
+      flex-direction: row-reverse;
+
+      .rin-picker-selected__ball {
+        border-radius: 50%;
+        background: #51c332;
+        right: 0;
+        margin-right: 17px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 3px;
+      }
+    }
+
+    .rin-picker__wrap {
+      transition: transform ease;
+      transform: translate3d(0, 0, 0);
+      box-sizing: border-box;
+
+      .rin-picker-item {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 }
 
 .rin-picker-enter-active,
 .rin-picker-leave-active {
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .rin-picker-enter,
