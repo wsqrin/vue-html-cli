@@ -20,5 +20,6 @@ module.exports = {
     "vue"
   ],
   "rules": {
+    "comma-dangle": [2, "never"],
   }
 };
