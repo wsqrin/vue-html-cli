@@ -1,13 +1,15 @@
 <template>
   <div>
-    <rin-overlay v-model="dialogOverlay"></rin-overlay>
+    <rin-overlay v-model="value"
+                 :overlay="overlay"
+                 :overlay-color="overlayColor"></rin-overlay>
 
-    <div class="rin-dialog__warp">
-      <transition name="rin-dialog"
-                  mode="out-in">
+    <transition name="rin-dialog"
+                mode="out-in">
+      <div class="rin-dialog__warp"
+           v-if="value">
 
-        <div class="rin-dialog"
-             v-if="value">
+        <div class="rin-dialog">
           <div class="rin-dialog__header "
                v-if="showTitle">
             <slot name="title"></slot>
@@ -40,19 +42,14 @@
 
           </div>
         </div>
-      </transition>
-    </div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
 export default {
   name: 'RinDialog',
-  data () {
-    return {
-      dialogOverlay: false,
-    }
-  },
   props: {
     value: Boolean, // 显示
     // @弹框标题
@@ -96,7 +93,13 @@ export default {
       type: Boolean,
       default: true
     },
-    // 默认显示遮罩层
+    //--------------
+    // @遮罩层背景颜色
+    overlayColor: {
+      type: String,
+      default: 'rgba(0, 0, 0, 0.7)'
+    },
+    // @是否显示遮罩层
     overlay: {
       type: Boolean,
       default: true
@@ -113,24 +116,21 @@ export default {
       this.$emit('cancel')
       this.$emit('input', false)
     }
-  },
-  watch: {
-    value (v) {
-      this.showDialog = v
-
-      this.dialogOverlay = v
-    }
-  },
+  }
 }
 </script>
 
 <style scoped lang="scss">
 .rin-dialog__warp {
   position: fixed;
-  top: 48%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 321px) {
