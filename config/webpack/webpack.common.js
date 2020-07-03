@@ -16,7 +16,7 @@ module.exports = {
   entry: ['@babel/polyfill', './src/main.js'],
   output: {
     filename: 'rin-vue.js',
-    path: path.resolve(__root, 'dist'), // 打包路径：通过resolve保证为绝对路径
+    path: path.resolve(__root, 'dist') // 打包路径：通过resolve保证为绝对路径
   },
   resolve: {
     alias: { '@': path.resolve(__root, 'src') }
@@ -62,14 +62,14 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           { loader: 'css-loader', options: { importLoaders: 1 } },
           'sass-loader',
-          'postcss-loader',
+          'postcss-loader'
         ],
         include: path.resolve(__root, 'src'), // 指定src目录下,不配置会导致@babel/polyfill报错
         exclude: '/node_modules/' // 忽略目录
       },
       { // 处理html中的图片
         test: /\.(html)$/,
-        loader: 'html-loader',
+        loader: 'html-loader'
       },
       { // 图片处理
         test: /\.(jpg|png|gif|bmp|jpeg)$/,
@@ -78,7 +78,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 8192,
-              outputPath: 'images/', // 大于限制的图片放到images/文件下
+              outputPath: 'images/' // 大于限制的图片放到images/文件下
             }
           }
         ]
@@ -98,10 +98,10 @@ module.exports = {
         removeAttributeQuotes: true, // 移除属性的引号
         removeEmptyAttributes: true // 移除没有值的属性
       },
-      hash: true,
+      hash: true
     }),
     new MiniCssExtractPlugin({
-      filename: 'rin-vue.css',
+      filename: 'rin-vue.css'
     }),
     new OptimizeCSSAssetsPlugin()
   ]

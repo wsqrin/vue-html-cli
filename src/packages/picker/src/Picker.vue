@@ -88,23 +88,23 @@ export default {
         start: 0,
         end: 0,
         move: 0,
-        save: 0,
+        save: 0
       }
     }
   },
 
   props: {
     value: Boolean,
-    // 标题
-    title: {
-      type: String,
-      default: '标题',
-    },
-
     // 显示头部
     showHeader: {
       type: Boolean,
-      default: true,
+      default: true
+    },
+
+    // 标题
+    title: {
+      type: String,
+      default: '标题'
     },
 
     // 显示勾选小球
@@ -113,41 +113,16 @@ export default {
       default: true
     },
 
+    // 选项的高度
     itemHeight: {
       type: Number,
       default: 40
     },
 
-    // 选择器
+    // 选择器选项内容
     pickers: {
       type: Array,
-      default: () => {
-        return [
-          {
-            title: '标题0',
-            subPickers: [],
-          },
-          {
-            title: '标题1',
-            subPickers: [],
-          },
-          {
-            title: '标题2',
-            subPickers: [],
-          },
-          {
-            title: '标题3',
-            subPickers: [],
-          },
-          {
-            title: '标题4',
-            subPickers: [],
-          },
-          {
-            title: '标题5',
-            subPickers: [],
-          }
-        ]
+      default: () => { return [{ title: '标题0' }, { title: '标题1' } ]
       }
     },
 
@@ -216,7 +191,7 @@ export default {
     pickerItem () {
       return { height: `${this.itemHeight}px`, lineHeight: `${this.itemHeight}px` }
     }
-  },
+  }
 }
 </script>
 

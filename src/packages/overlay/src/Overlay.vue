@@ -2,7 +2,7 @@
   <transition name="rin-overlay"
               mode="out-in">
 
-    <div v-show="value"
+    <div v-if="value"
          class='rin-overlay__wrap'
          :style="{backgroundColor : overlay ? overlayColor: ''}">
 
@@ -15,10 +15,7 @@
 export default {
   name: 'RinOverlay',
   props: {
-    value: {
-      type: Boolean,
-      default: false,
-    },
+    value: Boolean,
     // @遮罩层背景颜色
     overlayColor: {
       type: String,
@@ -31,11 +28,7 @@ export default {
     }
   },
   watch: {
-    value (v) {
-      console.log(v);
-
-      document.body.style.overflow = v ? 'hidden' : 'visible'
-    }
+    value (v) { document.body.style.overflow = v ? 'hidden' : 'visible' }
   }
 }
 </script>

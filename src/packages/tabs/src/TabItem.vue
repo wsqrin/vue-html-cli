@@ -1,9 +1,9 @@
 <template>
-
+  <!-- :style="{width: rootTabs.tabWidth }" -->
   <div class="rin-tab-item"
-       @click="$emit('tabClick', { title: title, name:name })">
-    <span>{{ title }}</span>
-    <slot></slot>
+       ref="tab"
+       @click.stop="tabClick($event, command)">
+    <span class="rin-tab-title">{{ title }}</span>
   </div>
 
 </template>
@@ -11,39 +11,62 @@
 <script>
 export default {
   name: 'RinTabItem',
-  data () {
-    return {
-      move: 0,
-    }
-  },
-  props: {
-    // 标题
-    title: {
-      type: String,
-      default: '标题',
-    },
 
-    name: {
-      type: String,
-      default: 'title',
-    },
+  props: { // 标题
+    title: String,
+    command: String
   },
+  inject: ['rootTabs'],
+
   methods: {
-    handleTouchStart () {
+    tabClick (e, command) {
+      let move = e.target.parentElement.offsetLeft
+      let winWidth = document.documentElement.clientWidth
+      console.log('差值:' + (winWidth - this.rootTabs.line.width));
+      console.log('线移动' + move);
+
+      if (winWidth - this.rootTabs.line.width < move) {
+        console.log(true);
+      }
+      this.rootTabs.line.move = move
+      this.rootTabs.handleCommand(command)
     }
   },
+  mounted () {
+    // console.log(this.rootTabs.lineWidth)
+    // if (this.rootTabs.lineWidth === 0) {
+    //   console.log(this.$refs['tab'].clientWidth);
+
+    //   this.rootTabs.lineWidth = this.$refs['tab'].clientWidth
+    // }
+
+    // window.addEventListener('resize', () => {
+    //   console.log('test');
+    // })
+  }
 }
 </script>
 
 <style scoped lang="scss">
 .rin-tab-item {
-  width: 100px;
-  overflow: hidden;
-  border: 1px solid red;
   box-sizing: border-box;
+  display: flex;
   flex-shrink: 0;
-  overflow: auto;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+  flex-basis: 22%;
+}
+
+.rin-tab-title {
   display: flex;
   justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
 }
 </style>

@@ -48,7 +48,7 @@ export default {
         this.drawer_show = val
       }, 200)
     }
-  },
+  }
 }
 </script>
 

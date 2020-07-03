@@ -19,10 +19,7 @@
 export default {
   name: 'RinLoading',
   props: {
-    value: {
-      type: Boolean,
-      default: false
-    },
+    value: Boolean,
     // @提示的文字
     text: {
       type: String,

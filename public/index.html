@@ -7,15 +7,20 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>组件测试</title>
   <script src="../node_modules/vue/dist/vue.js"></script>
+  <style>
+    [v-cloak] {
+      display: none !important;
+    }
+  </style>
 </head>
 
-<body style="background-color:rgb(129, 184, 230);margin: 0;height: 3000px;">
-  <div id="app">
+<body style="background-color:rgb(252, 252, 252);margin: 0;height: 3000px;">
+  <div id="app" v-cloak>
     <!-- <rin-overlay v-model="overlay"></rin-overlay> -->
 
     <!-- <rin-loading v-model="loading"></rin-loading> -->
 
-
+    <!-- 
     <rin-backtop></rin-backtop>
 
     <button @click="confirm">confirm测试</button>
@@ -30,25 +35,19 @@
     <button @click="picker = true">picker选择器</button>
 
 
-    <rin-picker v-model="picker" :overlay="true" @confirm="pickerConfirm"></rin-picker>
+    <rin-picker v-model="picker" :overlay="true" @confirm="pickerConfirm"></rin-picker> -->
 
-    <!-- 
-    <rin-tabs v-model="selected">
-      <rin-tab-item title="标题" name="name">
 
-        <div>123</div>
-      </rin-tab-item>
-      <rin-tab-item title="标题" name="name">1223</rin-tab-item>
-      <rin-tab-item title="标题" name="name">12233333</rin-tab-item>
-      <rin-tab-item title="标题" name="name">122444423</rin-tab-item>
-      <rin-tab-item title="标题" name="name">12255552223</rin-tab-item>
-      <rin-tab-item title="标题" name="name">123</rin-tab-item>
-      <rin-tab-item title="标题" name="name">123</rin-tab-item>
-      <rin-tab-item title="标题" name="name">123</rin-tab-item>
-      <rin-tab-item title="标题" name="name">123</rin-tab-item>
-      <rin-tab-item title="标题" name="name">123</rin-tab-item>
-      <rin-tab-item title="标题" name="name">213</rin-tab-item>
-    </rin-tabs> -->
+    <rin-tabs v-model="selected" @tab-click="handTabClick">
+      <rin-tab-item title="test01" command="test01">test01</rin-tab-item>
+      <rin-tab-item title="test02" command="test02">test02</rin-tab-item>
+      <rin-tab-item title="test03" command="test03">test03</rin-tab-item>
+      <rin-tab-item title="test04" command="test04">test04</rin-tab-item>
+      <rin-tab-item title="test05" command="test05">test05</rin-tab-item>
+      <rin-tab-item title="test06" command="test06">test06</rin-tab-item>
+      <rin-tab-item title="test07" command="test07">test07</rin-tab-item>
+      <rin-tab-item title="test08" command="test07">test07</rin-tab-item>
+    </rin-tabs>
   </div>
 
   <script>
@@ -69,6 +68,9 @@
       methods: {
         pickerConfirm: function (item) {
           console.log(item);
+        },
+        handTabClick(command) {
+          console.log(command);
         },
         confirm: function () {
           this.$confirm({

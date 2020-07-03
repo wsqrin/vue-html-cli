@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.4/lib/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/vant@2.4/lib/vant.min.js"></script>
+  <title>vant</title>
+</head>
+
+<body>
+  <div id="app">
+    <van-tabs v-model="active" scrollspy sticky>
+      <van-tab v-for="index in 8" :title="'选项 ' + index">
+        内容 {{ index }}
+      </van-tab>
+    </van-tabs>
+  </div>
+
+
+  <script>
+    new Vue({
+      el: '#app',
+      template: `<van-button>按钮</van-button>`
+    });</script>
+</body>
+
+</html>

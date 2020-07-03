@@ -1,15 +1,15 @@
-import '@/assets/scss/app.scss'
 import '@/assets/icons/rin-icon.css'
-
-import Test from './packages/test'
-import Overlay from './packages/overlay'
+import '@/assets/scss/app.scss'
+import Backtop from './packages/backtop'
 import Dialog from './packages/dialog'
 import Loading from './packages/loading'
-import Backtop from './packages/backtop'
-import Picker from './packages/picker'
-import { Tabs, TabItem } from './packages/tabs'
-
 import Confirm from './packages/message-box/comfirm'
+import Overlay from './packages/overlay'
+import Picker from './packages/picker'
+import { TabItem, Tabs } from './packages/tabs'
+import Test from './packages/test'
+
+
 const components = [
   Test,
   Overlay,
@@ -33,7 +33,6 @@ const install = function (Vue) {
   //   size: opts.size || '',
   //   zIndex: opts.zIndex || 2000
   // }
-
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -49,6 +48,4 @@ export default {
   Dialog: Dialog.use,
   Loading: Loading.use
 }
-
-
 
